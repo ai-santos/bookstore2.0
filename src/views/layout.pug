@@ -16,8 +16,10 @@ html(lang="en")
           .col-lg-12
             .header-list
               a(href="/" title="Home").logo GOL
-              a(href="/signup" title="Sign Up") Sign Up
-              a(href="/login" title="Login") Login
-              a(href="/logout" title="Logout") Logout
+              if loggedIn 
+                a(href="/logout" title="Logout") Logout
+              else
+                a(href="/signup" title="Sign Up") Sign Up
+                a(href="/login" title="Login") Login
       .container
         block content
