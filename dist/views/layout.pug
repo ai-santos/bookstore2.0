@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    title Gol
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/stylesheets/style.css")
+    script(src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
+    script(src="/javascripts/browser.js")
+
+  body
+    
+    nav.navbar-fixed-top
+      .container
+        .row
+          .col-lg-12
+            .header-list
+              a(href="/" title="Home").logo GOL
+              a(href="/signup" title="Sign Up") Sign Up
+              a(href="/login" title="Login") Login
+              a(href="/logout" title="Logout") Logout
+      .container
+        block content
