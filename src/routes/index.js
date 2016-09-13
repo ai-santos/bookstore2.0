@@ -38,7 +38,7 @@ router.post('/login', (request, response) => {
     .then(user => {
       if (user && password.compare(request.body.password, user.encrypted_password)) {
         request.session.userId = user.id
-        response.redirect('/library')
+        response.redirect('library/'+user.id)
       }else{
         response.render('users/login', {
           email: request.body.email,

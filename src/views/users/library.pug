@@ -3,16 +3,10 @@ extends ../layout
 block content
 
   h1 Welcome to Your Library
-  pre= JSON.stringify(books, null, 4)
-  .row
+  ol
     for book in books
-      .col-sm-12
-        img.media-object(src=book.image_url, alt='')
-        div= book.id
-        div= book.image_url
-        div= book.title
-        div= book.description
-    a.button.btn.btn-sm.btn-danger(href="/books/"+1+"/delete") Delete
+      li
+        a(href="/books/"+book.id)= book.title
 
 
 

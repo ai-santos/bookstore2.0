@@ -4,7 +4,7 @@ import database from '../database'
 
 const router = express.Router()
 
-router.get('/library', (request, response) => {
+router.get('/library/:userId', (request, response) => {
   const userId = request.session.userId;
   if (!userId) return response.redirect('/login');
 
