@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  ul
+    li
+      a(href="/books/"+book.id+"/edit") edit
+    li
+      a(href="/books/"+book.id+"/delete") delete
+  img(src=book.image_url)
+  h1= book.title
+  p= book.description
+
+  h4 Authors
+  ol
+    for author in book.authors
+      li= author.name
+
+  h4 Genres
+  ol
+    for genre in book.genres
+      li= genre.name

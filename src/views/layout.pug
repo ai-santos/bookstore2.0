@@ -10,16 +10,15 @@ html(lang="en")
 
   body
     
-    nav.navbar-fixed-top
-      .container
-        .row
-          .col-lg-12
-            .header-list
-              a(href="/" title="Home").logo Bookstore 2.0
-              if loggedIn 
-                a(href="/logout" title="Logout") Logout
-              else
-                a(href="/signup" title="Sign Up") Sign Up
-                a(href="/login" title="Login") Login
-    .container
-      block content
+    nav.navbar.navbar-default
+      .row
+        .col-lg-12
+          a(href="/" title="Home").logo Bookstore 2.0
+          if loggedIn 
+            a(href="/logout" title="Logout") Logout
+          else
+            a(href="/signup" title="Sign Up") Sign Up
+            a(href="/login" title="Login") Login
+
+.container
+  block content

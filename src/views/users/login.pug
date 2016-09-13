@@ -3,6 +3,7 @@ extends ../layout
 block content
   if error
     h1= error
+  
   form(method="post" action="/login")
     .form-group
       label(for='email') Email address
