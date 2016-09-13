@@ -70,7 +70,6 @@ router.get('/books/:bookId/edit', (request, response) => {
       const book = details[0]
       const genres = details[1]
       const authors = details[2]
-      // if (!book) return response.status(404).render('not_found')
       response.render('books/edit', {
         book: book,
         genres: genres,

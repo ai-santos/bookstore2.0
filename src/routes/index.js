@@ -5,10 +5,14 @@ import database from '../database'
 const router = express.Router()
 
 router.get('/', (request, response) => {
-  response.render('index', {
-    session: request.session
-  }) 
-})
+  database.getAllBooks()
+    .then((books) => {
+      response.render('books/index', {
+        books: books
+      }) 
+    })
+    .catch(renderError(response))
+});
 
 router.get('/signup', (request, response) => {
   response.render('users/signup')
@@ -32,7 +36,6 @@ router.get('/login', (request, response) => {
   })
 })
 
-
 router.post('/login', (request, response) => {
   database.getUserByEmail(request.body.email)
     .then(user => {
@@ -55,5 +58,13 @@ router.get('/logout', (request, response) => {
   request.session = null
   response.redirect('/')
 })
+
+const renderError = function(response){
+  return function(error){
+    response.status(500).render('error',{
+      error: error
+    })
+  }
+}
 
 module.exports = router

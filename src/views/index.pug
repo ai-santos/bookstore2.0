@@ -1,6 +1,8 @@
 extends ./layout
 
 block content
-  h1 Welcome to Bookstore 2.0
-  pre= JSON.stringify(session, null, 4)
-
+  h1 Welcome To Book Store 2.0
+  ol
+    for book in books
+      li
+        a(href="/books/"+book.id)= book.title
