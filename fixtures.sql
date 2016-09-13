@@ -9,23 +9,28 @@ VALUES
 INSERT INTO 
   books (id, image_url, title, description)
 VALUES
-  (1, 'http://i.imgur.com/SwgeflMt.png', 'JavaScript and JQuery: Interactive Front-End Web Development 1st Edition', 'This full-color book will show you how to make your websites more interactive and your interfaces more interesting and intuitive.'),
-  (2, 'http://i.imgur.com/MTZnZADt.jpg', 'Clean Code: A Handbook of Agile Software Craftsmanship 1st Edition', ''),
-  (3, 'http://i.imgur.com/B4C2gpit.jpg', 'JavaScript Patterns 1st Edition', 'What is the best approach for developing an application with JavaScript? This book helps you answer that question with numerous JavaScript coding patterns and best practices.')
+  (101, 'http://i.imgur.com/SwgeflMt.png', 'JavaScript and JQuery: Interactive Front-End Web Development 1st Edition', 'This full-color book will show you how to make your websites more interactive and your interfaces more interesting and intuitive.'),
+  (102, 'http://i.imgur.com/MTZnZADt.jpg', 'Clean Code: A Handbook of Agile Software Craftsmanship 1st Edition', ''),
+  (103, 'http://i.imgur.com/B4C2gpit.jpg', 'JavaScript Patterns 1st Edition', 'What is the best approach for developing an application with JavaScript? This book helps you answer that question with numerous JavaScript coding patterns and best practices.')
 ;
 
 INSERT INTO
   genres (id, name)
 VALUES
-  (20, 'non-fiction')
+  (100, 'non-fiction'),
+  (101, 'fiction'),
+  (102, 'Sci-Fi'),
+  (103, 'Feminism'),
+  (104, 'Fitness')
 ;
 
 INSERT INTO
   authors (id, name)
 VALUES
-  (10, 'Jon Duckett'),
-  (11, 'Robert C. Martin'),
-  (12, 'Stoyan Stefanov')
+  (100, 'Jon Duckett'),
+  (101, 'Robert C. Martin'),
+  (102, 'Stoyan Stefanov'),
+  (103, 'Willian Shack-spear')
 ;
 
 
@@ -40,16 +45,20 @@ VALUES
 INSERT INTO
   book_genres(book_id, genre_id)
 VALUES
-  (1, 101),
-  (2, 101),
-  (3, 101)
+  (101, 101),
+  (101, 102),
+  (102, 103),
+  (102, 100),
+  (103, 100),
+  (103, 104)
 ;
 
 INSERT INTO
   book_authors(book_id, author_id)
 VALUES
-  (1, 10),
-  (2, 11),
-  (3, 12)
+  (101, 100),
+  (102, 101),
+  (103, 102),
+  (103, 103)
 ;
 

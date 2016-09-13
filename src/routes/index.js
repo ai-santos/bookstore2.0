@@ -32,9 +32,6 @@ router.get('/login', (request, response) => {
   })
 })
 
-router.get('/library', (request, response) => {
-  response.render('users/library', {majid: "just test"})
-})
 
 router.post('/login', (request, response) => {
   database.getUserByEmail(request.body.email)

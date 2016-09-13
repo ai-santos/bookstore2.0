@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+  ol
+    for book in books
+      li
+        a(href="/books/"+book.id)= book.title
