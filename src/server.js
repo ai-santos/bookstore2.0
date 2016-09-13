@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieSession from 'cookie-session'
-import routes from './routes'
+import bookRoutes from './routes/books'
+import routes from './routes/index'
 import pug from 'pug'
 import path from 'path'
 import bodyParser from 'body-parser'
@@ -15,6 +16,9 @@ server.set('views', path.join(__dirname, 'views'))
 server.set('view engine', 'pug')
 
 //middleware
+
+//make public files available 
+server.use(express.static(__dirname+'/public'))
 // parse application/x-www-form-urlencoded
 server.use(bodyParser.urlencoded({ extended: true }))
 
@@ -33,6 +37,8 @@ server.use(function (request, response, next) {
 
 //routes
 server.use('/', routes)
+server.use('/', bookRoutes)
+
 
 
 //local host

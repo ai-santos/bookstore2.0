@@ -40,7 +40,32 @@ const getUserByEmail = (email) => {
   return db.oneOrNone(sql, variables)
 }
 
+const getAllBooksByUserId = (userId) => {
+  const sql = `
+    SELECT 
+      *
+    FROM
+      book_users
+    WHERE
+      user_id = $1
+  `
+  const variables = [userId]
+  return db.manyOrNone(sql, [userId])
+} 
+
+const deleteBook = (bookId) => {
+  const sql = `
+    DELETE FROM
+      books
+    WHERE
+     id=$1
+  `
+  return db.none(sql, [bookId])
+}
+
 export default { 
   createUser,
-  getUserByEmail
+  getUserByEmail,
+  deleteBook,
+  getAllBooksByUserId
 }

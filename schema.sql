@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS books;
 
 CREATE TABLE books(
   id SERIAL PRIMARY KEY,
+  image_url VARCHAR(255),
   title text NOT NULL CHECK (title <> ''),
   description text
 );

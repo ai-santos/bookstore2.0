@@ -6,7 +6,7 @@ html(lang="en")
     link(rel="stylesheet" href="/stylesheets/style.css")
     script(src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
-    script(src="/javascripts/browser.js")
+    script(src="/scripts/app.js")
 
   body
     
@@ -15,7 +15,7 @@ html(lang="en")
         .row
           .col-lg-12
             .header-list
-              a(href="/" title="Home").logo GOL
+              a(href="/" title="Home").logo Bookstore 2.0
               if loggedIn 
                 a(href="/logout" title="Logout") Logout
               else
