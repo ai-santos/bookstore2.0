@@ -2,8 +2,16 @@ extends ../layout
 
 block content
   h1 Welcome to Your Library
-  for book in books
-    
+  pre= JSON.stringify(books, null, 4)
+  .row
+    for book in books
+      .col-sm-12
+        img.media-object(src=book.image_url, alt='')
+        div= book.id
+        div= book.image_url
+        div= book.title
+        div= book.description
+    a.button.btn.btn-sm.btn-danger(href="/books/"+1+"/delete") Delete
 
 
 
@@ -15,8 +23,6 @@ block content
 
 
 
-
-    
     //- .row.jumbotron
     //-   h2.text-center
     //-     a(href="/books/"+book.id)= book.title
