@@ -1,9 +1,10 @@
 import express from 'express'
+import password from '../password'
+import database from '../database'
 
 const router = express.Router()
 
 router.get('/', (request, response) => {
-  request.session.times = (request.session.times || 0) + 1
   response.render('index', {
     session: request.session
   }) 
@@ -14,15 +15,43 @@ router.get('/signup', (request, response) => {
 })
 
 router.post('/signup', (request, response) => {
-  response.json(request.body)
+  database.createUser(request.body.user)
+    .then(user => {
+      request.session.userId = user.id
+      response.redirect('/')
+    })
+    .catch(error => {
+      response.render('error', {error: error})
+    })
 })
 
 
 router.get('/login', (request, response) => {
-  response.render('users/login')
+  response.render('users/login', {
+    email: '',
+  })
+})
+
+router.post('/login', (request, response) => {
+  database.getUserByEmail(request.body.email)
+    .then(user => {
+      if (user && password.compare(request.body.password, user.encrypted_password)) {
+        request.session.userId = user.id
+        response.redirect('/')
+      }else{
+        response.render('users/login', {
+          email: request.body.email,
+          error: 'Bad email or password'
+        })
+      }
+    })
+    .catch(error => {
+      response.render('error', {error: error})
+    })
 })
 
 router.get('/logout', (request, response) => {
+  request.session = null
   response.redirect('/')
 })
 
