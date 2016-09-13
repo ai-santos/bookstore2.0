@@ -40,6 +40,23 @@ const getUserByEmail = (email) => {
   return db.oneOrNone(sql, variables)
 }
 
+const createBook = (attributes) => {
+  const sql = `
+    INSERT INTO
+      books (title, image_url, description)
+    VALUES ($1, $2, $3)
+    RETURNING 
+      id
+  `
+  const variables = [
+    attributes.title,
+    attributes.image_url,
+    attributes.description
+  ]
+
+  return db.one(sql, variables)
+  // create author and genre
+}
 
 const getAllBooks = () => {
   const sql = `
