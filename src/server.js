@@ -12,6 +12,7 @@ server.set('trust proxy', 1) // trust first proxy
 
 //view engine setup
 server.set('views', path.join(__dirname, 'views'))
+server.use(express.static(path.join(__dirname, 'public')));
 server.set('view engine', 'pug')
 
 //middleware
