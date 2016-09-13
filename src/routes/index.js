@@ -32,12 +32,16 @@ router.get('/login', (request, response) => {
   })
 })
 
+router.get('/library', (request, response) => {
+  response.render('users/library', {majid: "just test"})
+})
+
 router.post('/login', (request, response) => {
   database.getUserByEmail(request.body.email)
     .then(user => {
       if (user && password.compare(request.body.password, user.encrypted_password)) {
         request.session.userId = user.id
-        response.redirect('/')
+        response.redirect('/library')
       }else{
         response.render('users/login', {
           email: request.body.email,
