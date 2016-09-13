@@ -37,9 +37,12 @@ VALUES
 INSERT INTO
   book_users(user_id, book_id)
 VALUES
-  (100, 1),
-  (101, 2),
-  (102, 3)
+  (100, 101),
+  (100, 103),
+  (101, 102),
+  (101, 103),
+  (102, 101),
+  (102, 102)
 ;
 
 INSERT INTO
