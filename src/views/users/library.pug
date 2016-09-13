@@ -2,13 +2,42 @@ extends ../layout
 
 block content
 
-  .container
-    .row
-      .col-md-12
-        .media
-          .media-left
-            a(href='#')
-              img.media-object(src='...', alt='...')
-          .media-body
-            h4.media-heading Media heading
-            h1= majid
+  h1 Welcome to Your Library
+  pre= JSON.stringify(books, null, 4)
+  .row
+    for book in books
+      .col-sm-12
+        img.media-object(src=book.image_url, alt='')
+        div= book.id
+        div= book.image_url
+        div= book.title
+        div= book.description
+    a.button.btn.btn-sm.btn-danger(href="/books/"+1+"/delete") Delete
+
+
+
+
+
+
+
+
+
+
+
+    //- .row.jumbotron
+    //-   h2.text-center
+    //-     a(href="/books/"+book.id)= book.title
+    //-   .col-md-2
+    //-     img.media-object.thumbnail(src= book.image_url, alt='...')
+    //-     for author in book.authors
+    //-       div By:
+    //-         a(href="/authors/"+author.id)=author.name
+    //-     div Genres:
+    //-       for genre in book.genres
+    //-         a(href="/genres/"+genre.id)=genre.name
+    //-         br 
+    //-   .col-md-10
+    //-     blockquote=book.description
+
+
+

@@ -40,7 +40,42 @@ const getUserByEmail = (email) => {
   return db.oneOrNone(sql, variables)
 }
 
+const getAllBooksByUserId = (userId) => {
+  const sql = `
+    SELECT 
+      *
+    FROM
+      books
+    JOIN
+      book_users
+    ON
+      books.id = book_users.book_id
+    WHERE
+      book_users.user_id = $1
+  `
+  const variables = [userId]
+  return db.manyOrNone(sql, [userId])
+  // .then(books =>{
+  //   Promise.all([
+  //     getAuthorsForBookIds(books.map(book => book.id)),
+  //     getAuthorsForBookIds(books.map(book => book.id)),
+  //   ])
+  // })
+} 
+
+const deleteBook = (bookId) => {
+  const sql = `
+    DELETE FROM
+      books
+    WHERE
+     id=$1
+  `
+  return db.none(sql, [bookId])
+}
+
 export default { 
   createUser,
-  getUserByEmail
+  getUserByEmail,
+  deleteBook,
+  getAllBooksByUserId
 }
