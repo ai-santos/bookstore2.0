@@ -24,12 +24,16 @@ CREATE TABLE genres(
   name VARCHAR(255)
 );
 
+CREATE UNIQUE INDEX genre_name ON genres (name);
+
 DROP TABLE IF EXISTS authors;
 
 CREATE TABLE authors(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255)
 );
+
+CREATE UNIQUE INDEX author_name ON authors (name);
 
 DROP TABLE IF EXISTS book_genres;
 
