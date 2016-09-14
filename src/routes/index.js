@@ -4,15 +4,15 @@ import database from '../database'
 
 const router = express.Router()
 
-router.get('/', (request, response) => {
-  database.getAllBooks()
-    .then((books) => {
-      response.render('books/index', {
-        books: books
-      }) 
-    })
-    .catch(renderError(response))
-});
+// router.get('/', (request, response) => {
+//   database.getAllBooks()
+//     .then((books) => {
+//       response.render('books/index', {
+//         books: books
+//       }) 
+//     })
+//     .catch(renderError(response))
+// });
 
 router.get('/signup', (request, response) => {
   response.render('users/signup')
@@ -41,7 +41,7 @@ router.post('/login', (request, response) => {
     .then(user => {
       if (user && password.compare(request.body.password, user.encrypted_password)) {
         request.session.userId = user.id
-        response.redirect('library/'+user.id)
+        response.redirect('books/user/'+user.id)
       }else{
         response.render('users/login', {
           email: request.body.email,
