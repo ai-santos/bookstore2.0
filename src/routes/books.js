@@ -4,13 +4,13 @@ import database from '../database'
 
 const router = express.Router()
 
-router.get('/library/:userId', (request, response) => {
+router.get('/books/user/:userId', (request, response) => {
   const userId = request.session.userId;
   if (!userId) return response.redirect('/login');
 
   database.getAllBooksByUserId(userId)
     .then((books) => {
-      response.render('users/library', {
+      response.render('users/books', {
         books: books
       }) 
     })
@@ -18,7 +18,7 @@ router.get('/library/:userId', (request, response) => {
 });
 
 // INDEX
-router.get('/books', (request, response) => {
+router.get('/', (request, response) => {
   database.getAllBooks()
     .then((books) => {
       response.render('books/index', {
@@ -53,7 +53,7 @@ router.get('/books/:bookId', (request, response) => {
 router.get('/books/:bookId/delete', (request, response) => {
   database.deleteBook(request.params.bookId)
     .then(() => {
-      response.redirect('/library')
+      response.redirect(`/books/${bookId}`)
     })
     .catch(renderError(response))
 });
