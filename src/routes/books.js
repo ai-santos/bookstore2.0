@@ -35,22 +35,29 @@ router.get('/books/new', (request, response) => {
 
 // CREATE
 router.post('/books', (request, response) => {
+  const { title, image_url, description, author, genre } = request.body.book
 
-  console.log("Aileen", request.body)
+  console.log("Aileen", title)
   Promise.all([
-    database.createBook(request.body.book),
-    database.createAuthor(request.body.author),
-    database.createGenre(request.body.genre)
+    database.createBook(title, image_url, description),
+    database.createAuthor(author),
+    database.createGenre(genre)
   ])
   .then(results => {
-    const [ book, authors, genres ] = result 
+    console.log("results", results)
+    const bookId = results[0].id
+    const authorId = results[1].id
+    const genreId = results[2].id
     Promise.all([
-      database.associateBookWithGenres(book, genres),
-      database.associateBookWithAuthors(book, authors),
+      database.associateBookWithGenres(bookId, genreId),
+      database.associateBookWithAuthors(bookId, authorId)
       // database.associateUserIdWithBook(book, userId)
-    ])   
-    console.log("Majid", results)
-    response.redirect(`/books/${results.id}`)
+    ])
+    .then(data => {
+      console.log("data", data)
+      response.redirect(`/books/${bookId}`)
+    })   
+    console.log("bookId", bookId, "authorId", authorId, "genreId", genreId)
   })
   .catch(renderError(response))
 });
