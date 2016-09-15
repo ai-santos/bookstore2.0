@@ -15,6 +15,7 @@ html(lang="en")
         .col-lg-12
           a(href="/" title="Home").logo Bookstore 2.0
           if loggedIn 
+            a(href="/books/new" title="New Book") New Book
             a(href="/logout" title="Logout") Logout
           else
             a(href="/signup" title="Sign Up") Sign Up
