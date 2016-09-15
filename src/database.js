@@ -44,7 +44,8 @@ const createBook = (attributes) => {
   const sql = `
     INSERT INTO
       books (title, image_url, description)
-    VALUES ($1, $2, $3)
+    VALUES 
+      ($1, $2, $3)
     RETURNING 
       id
   `
@@ -56,6 +57,35 @@ const createBook = (attributes) => {
 
   return db.one(sql, variables)
   // create author and genre
+}
+
+const createAuthor = (attributes) => {
+  const sql = `
+    INSERT INTO
+      authors (name)
+    VALUES
+      ($1)
+    RETURNING
+      id
+  `
+
+  return db.one(sql, [attributes.name])
+}
+
+const createGenre = (attributes) => {
+  const sql = `
+    INSERT INTO
+      genres (name)
+    VALUES
+      ($1)
+    RETURNING
+      id
+  `
+  const variables = [
+    attributes.name
+  ]
+
+  return db.one(sql, variables)
 }
 
 const getAllBooks = () => {
@@ -222,6 +252,11 @@ const updateBook = (bookId, attributes) => {
   return Promise.all(queries)
 }
 
+// const associateUserIdwithBook = (bookId, userId) => {
+
+// }
+
+
 const associateBookWithGenres = (bookId, genreIds) => {
   const queries = genreIds.map(genreId => {
     const sql = `
@@ -231,6 +266,19 @@ const associateBookWithGenres = (bookId, genreIds) => {
         ($1, $2)
     `
     return db.none(sql, [bookId, genreId])
+  })
+  return Promise.all(queries)
+}
+
+const associateBookWithAuthors = (bookId, authorIds) => {
+  const queries = authorIds.map(authorId => {
+    const sql = `
+      INSERT INTO 
+        book_authors(book_id, author_id)
+      VALUES
+        ($1, $2)
+    `
+    return db.none(sql, [bookId, authorId])
   })
   return Promise.all(queries)
 }
@@ -259,7 +307,12 @@ const replaceBookAuthorAssociations = (bookId, authorIds) => {
 }
 
 export default { 
+  createBook,
   createUser,
+  createAuthor,
+  createGenre,
+  associateBookWithGenres,
+  associateBookWithAuthors,
   getUserByEmail,
   deleteBook,
   getAllBooks,
