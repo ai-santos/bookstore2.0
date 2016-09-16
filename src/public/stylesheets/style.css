@@ -12,9 +12,12 @@
   font-weight: bold;
 }
 
-.flexbox {
+.header-links {
   display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
 }
 
 .shrink {

@@ -12,24 +12,22 @@ html(lang="en")
   body
     header
       nav.navbar.navbar-default
-        .row
-          .col-lg-12.flexbox
-            a.navbar-brand.nav-logo-font(href="/" title="Home").logo Bookstore 2.0
-            form#wrap(action='', autocomplete='on')
-              .form-group
-                input#search.form-control(name='', type='text', placeholder="What're we looking for ?")
-                input#search_submit.form-control(value='Rechercher', type='submit')
+        .container
+          .row
+            .col-lg-12.header-list
+              a.navbar-brand.nav-logo-font(href="/" title="Home").logo Bookstore 2.0
+              form#wrap(action='/search-books', autocomplete='on', method="get")
+                .form-group
+                  input#search.form-control(name='search_query', type='text', placeholder="What are we looking for?")
+                  input#search_submit.form-control(type='submit' value='Submit')
 
-            //- form.navbar-form.navbar-left(action="/search-books", method="get")
-            //-   .form-group
-            //-     input.form-control(type="text", name="search_query", placeholder="Search by Title or Author")
-            //-     button.btn.btn-default(type="submit", value="Submit") Submit           
-            if loggedIn 
-              a(href="/books/new" title="New Book") New Book
-              a(href="/logout" title="Logout") Logout
-            else
-              a(href="/signup" title="Sign Up") Sign Up
-              a(href="/login" title="Login") Login
+              if loggedIn 
+                a(href="/books/new" title="New Book") New Book
+                a(href="/logout" title="Logout") Logout
+              else
+                a(href="/signup" title="Sign Up") Sign Up
+                a(href="/login" title="Login") Login
 
+   
 .container
   block content
