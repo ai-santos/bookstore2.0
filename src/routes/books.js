@@ -28,43 +28,47 @@ router.get('/', (request, response) => {
     .catch(renderError(response))
 });
 
+
+
 // NEW
 router.get('/books/new', (request, response) => {
   response.render('books/new')
 });
 
-// CREATE
-router.post('/books', (request, response) => {
-  const { title, image_url, description, author, genre } = request.body.book
+//CREATE BOOK WITH EXISTING AUTHOR, EXISTING GENRE
 
-  console.log("Aileen", title)
+
+// CREATE BOOK WITH NEW AUTHOR, NEW GENRE
+router.post('/books', (request, response) => {
+  const { title, image_url, description, author1, author2, genre1, genre2 } = request.body.book
   Promise.all([
     database.createBook(title, image_url, description),
-    database.createAuthor(author),
-    database.createGenre(genre)
+    database.createOneorMoreAuthors(author1, author2),
+    database.createOneOrMoreGenres(genre1, genre2)
   ])
   .then(results => {
-    console.log("results", results)
-    const bookId = results[0].id
-    const authorId = results[1].id
-    const genreId = results[2].id
+    const bookId = results[0]
+    const authorId = results[1]
+    const genreId = results[2]
+    // console.log(results)
+    console.log("bookId", bookId, "authorId", authorId, "genreId", genreId)
     Promise.all([
       database.associateBookWithGenres(bookId, genreId),
       database.associateBookWithAuthors(bookId, authorId)
       // database.associateUserIdWithBook(book, userId)
     ])
-    .then(data => {
-      console.log("data", data)
-      response.redirect(`/books/${bookId}`)
-    })   
-    console.log("bookId", bookId, "authorId", authorId, "genreId", genreId)
-  })
+    .then(bla => {
+      console.log('we are at the end of the createBook function')
+      response.redirect(`/books/${bookId.id}`)
+    })
+  })   
   .catch(renderError(response))
 });
 
 // SHOW
 router.get('/books/:bookId', (request, response) => {
   const { bookId } = request.params
+  console.log('we are in the details page', bookId)
   database.getBookWithAuthorsAndGenres(bookId)
     .then(book => {
       response.render('books/show',{
@@ -74,6 +78,7 @@ router.get('/books/:bookId', (request, response) => {
     .catch(renderError(response))
 });
 
+// DELETE
 router.get('/books/:bookId/delete', (request, response) => {
   database.deleteBook(request.params.bookId)
     .then(() => {

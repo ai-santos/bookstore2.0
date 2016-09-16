@@ -12,14 +12,30 @@ block content
     .form-group
       label(for='description') Description
       textarea#description.form-control(name='book[description]')
+    div
+      input.form-control.author-name-hide(type="visible" name="book[author]" value="")
+      button#new-author.btn.btn-primary(type='save', value='+ Add New Author') Add New Author
+    div
+      input.form-control.genre-name-hide(type="visible" name="book[genre]" value="")
+      button#new-genre.btn.btn-success(type='save', value='+ Add New Genre') Add New Genre
+
+
+
     .form-group
-      label(for='author') author
-      textarea#author.form-control(name='book[author]')    
+      label(for='author') author 1
+      textarea#author.form-control(name='book[author1]')
     .form-group
-      label(for='genre') genre
-      textarea#genre.form-control(name='book[genre]')
+      label(for='author') author 2
+      textarea#author.form-control(name='book[author2]')  
+    .form-group
+      label(for='genre') genre 1
+      textarea#genre.form-control(name='book[genre1]')
+    .form-group
+      label(for='genre') genre 2
+      textarea#genre.form-control(name='book[genre2]')
     div
       input.btn.btn-success(type="submit", value="Create")
+
   //- .form-group
   //-   label(for='authors') Authors
   //-   select#authors.form-control(multiple name="book[author_ids]")
