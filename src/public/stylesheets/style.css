@@ -1,0 +1,7 @@
+.author-name-display, .genre-name-display {
+  display:  inline;
+}
+
+.author-name-hide, .genre-name-hide {
+  display:  none;
+}
