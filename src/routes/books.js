@@ -131,8 +131,8 @@ const getPage = function(request){
 //Search
 router.get('/search-books', (request, response) => {
   let page = getPage(request)
+  console.log("request.query.page", request.query.page)
   console.log("request.query", request.query)
-  console.log("request", request)
   console.log("request.query.search_query", request.query.search_query)
 
   const searchOptions = {
