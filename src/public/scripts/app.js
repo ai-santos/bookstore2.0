@@ -1,11 +1,12 @@
 $(function(){
-  $('#new-author').on('click', function(e){
-    event.preventDefault()
-    $('.author-name-hide').removeClass('author-name-hide');
-  })
+  
+  $(window).on('scroll', function(){
+    if($(window).scrollTop() > 5){
+      $('header').addClass('shrink');
+    } else {
+      $('header').removeClass('shrink');
+    }
+  }
 
-  $('#new-genre').on('click', function(e){
-    event.preventDefault()
-    $('.genre-name-hide').removeClass('genre-name-hide');
-  })
+  })();
 })
