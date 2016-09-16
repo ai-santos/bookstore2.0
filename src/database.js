@@ -3,13 +3,6 @@ const pgp = require('pg-promise')();
 const connectionString = `postgres://${process.env.USER}@localhost:5432/bookstore2.0`
 const db = pgp(connectionString)
 
-const PAGE_SIZE=10
-
-const pageToOffset = (page) => {
-  page = page || 1
-  return (page-1)*PAGE_SIZE;
-}
-
 const getAllGenres = () => {
   const sql = `
     SELECT
@@ -349,6 +342,13 @@ const associateBookWithAuthors = (bookId, authorIds) => {
     return Promise.all(queries)
 }
 
+const PAGE_SIZE=10
+
+const pageToOffset = (page) => {
+  page = page || 1
+  return (page-1)*PAGE_SIZE;
+}
+
 const searchForBooks = (options) => {
   const variables = []
   let sql = `
@@ -391,7 +391,7 @@ const searchForBooks = (options) => {
     `
   }
 
-   if (options.page){
+  if (options.page){
     variables.push(PAGE_SIZE)
     variables.push(pageToOffset(options.page))
     sql += `
