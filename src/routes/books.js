@@ -4,6 +4,12 @@ import database from '../database'
 
 const router = express.Router()
 
+const getPage = function(request){
+  let page = parseInt(request.query.page, 10)
+  if (isNaN(page) || page < 1) page = 1;
+  return page;
+}
+
 router.get('/books/user/:userId', (request, response) => {
   const userId = request.session.userId;
   if (!userId) return response.redirect('/login');
@@ -19,10 +25,17 @@ router.get('/books/user/:userId', (request, response) => {
 
 // INDEX
 router.get('/', (request, response) => {
-  database.getAllBooks()
+  let page = getPage(request)
+
+  const options = {
+    page : page
+  }
+
+  database.searchForBooks(options)
     .then((books) => {
       response.render('books/index', {
-        books: books
+        books: books,
+        page : page
       }) 
     })
     .catch(renderError(response))
@@ -122,24 +135,14 @@ router.post('/books/:bookId', (request, response) => {
     .catch(renderError(response))
 });
 
-const getPage = function(request){
-  let page = parseInt(request.query.page, 10)
-  if (isNaN(page) || page < 1) page = 1;
-  return page;
-}
-
 //Search
 router.get('/search-books', (request, response) => {
   let page = getPage(request)
-  console.log("request.query.page", request.query.page)
-  console.log("request.query", request.query)
-  console.log("request.query.search_query", request.query.search_query)
 
   const searchOptions = {
     search_query: request.query.search_query,
     page: page
   }
-  console.log("page", page)
 
   database.searchForBooks(searchOptions)
     .then(books => {
