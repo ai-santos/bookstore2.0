@@ -14,6 +14,10 @@ html(lang="en")
       .row
         .col-lg-12
           a(href="/" title="Home").logo Bookstore 2.0
+          form.navbar-form.navbar-left(action="/search-books", method="get")
+            .form-group
+              input.form-control(type="text", name="search_query", placeholder="Search by Title or Author")
+              button.btn.btn-default(type="submit", value="Submit") Submit           
           if loggedIn 
             a(href="/books/new" title="New Book") New Book
             a(href="/logout" title="Logout") Logout
