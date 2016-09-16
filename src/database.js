@@ -3,6 +3,83 @@ const pgp = require('pg-promise')();
 const connectionString = `postgres://${process.env.USER}@localhost:5432/bookstore2.0`
 const db = pgp(connectionString)
 
+const PAGE_SIZE=10
+
+const pageToOffset = (page) => {
+  page = page || 1
+  return (page-1)*PAGE_SIZE;
+}
+
+const getAllGenres = () => {
+  const sql = `
+    SELECT
+      *
+    FROM
+      genres
+  `
+  return db.all(sql)
+}
+
+const getAllAuthors = () => {
+  const sql = `
+    SELECT
+      *
+    FROM
+      authors
+  `
+  return db.all(sql)
+}
+
+const getAllBooksByUserId = (userId) => {
+  const sql = `
+    SELECT 
+      *
+    FROM
+      books
+    JOIN
+      book_users
+    ON
+      books.id = book_users.book_id
+    WHERE
+      book_users.user_id = $1
+  `
+  const variables = [userId]
+  return db.manyOrNone(sql, [userId])
+  // .then(books =>{
+  //   Promise.all([
+  //     getAuthorsForBookIds(books.map(book => book.id)),
+  //     getGenresForBookIds(books.map(book => book.id)),
+  //   ])
+  // })
+} 
+
+// const getAllGenresByUserId = (userId) => {
+//   const sql = `
+//     SELECT
+//       *
+//     FROM
+//       genres
+//     JOIN
+//       book_genres
+//     ON
+//       books.id = book_genres.book_id
+//     WHERE
+//       book_genres.user_id
+
+//   `
+//   return db.any(sql);
+// }
+
+// const getAllAuthorsByUserId = () => {
+//   const sql = `
+//     SELECT
+//       *
+//     FROM
+//       authors
+//   `
+//   return db.any(sql);
+// }
+
 const createUser = (attributes) => {
   const sql = `
     INSERT INTO 
@@ -62,7 +139,7 @@ const createBook = (title, image_url, description) => {
 const createOneorMoreAuthors = (author1, author2) => {
   let authors = [ author1, author2 ]
   const queries = authors.map(name => { 
-    if (name !== '') {
+    if (name !== '' && name !== undefined) {
       const sql = `
         INSERT INTO
           authors (name)
@@ -81,7 +158,7 @@ const createOneorMoreAuthors = (author1, author2) => {
 const createOneOrMoreGenres = (genre1, genre2) => {
   let genres = [ genre1, genre2 ]
   const queries = genres.map(name => {
-    if (name !== '') {
+    if (name !== '' && name !== undefined) {
       const sql = `
         INSERT INTO
           genres (name)
@@ -107,47 +184,7 @@ const getAllBooks = () => {
   return db.manyOrNone(sql)
 }
 
-const getAllBooksByUserId = (userId) => {
-  const sql = `
-    SELECT 
-      *
-    FROM
-      books
-    JOIN
-      book_users
-    ON
-      books.id = book_users.book_id
-    WHERE
-      book_users.user_id = $1
-  `
-  const variables = [userId]
-  return db.manyOrNone(sql, [userId])
-  // .then(books =>{
-  //   Promise.all([
-  //     getAuthorsForBookIds(books.map(book => book.id)),
-  //     getAuthorsForBookIds(books.map(book => book.id)),
-  //   ])
-  // })
-} 
 
-const getAllGenres = () => {
-  const sql = `
-    SELECT
-      *
-    FROM
-      genres
-  `
-  return db.any(sql);
-}
-const getAllAuthors = () => {
-  const sql = `
-    SELECT
-      *
-    FROM
-      authors
-  `
-  return db.any(sql);
-}
 
 const deleteBook = (bookId) => {
   const sql = `
@@ -243,7 +280,7 @@ const updateBook = (bookId, attributes) => {
     WHERE
       id = $1
   `
-
+  console.log("attributes", attributes)
   const variables = [
     bookId,
     attributes.image_url,
@@ -280,30 +317,89 @@ const replaceBookAuthorAssociations = (bookId, authorIds) => {
 // }
 
 const associateBookWithGenres = (bookId, genreIds) => {
-  const queries = genreIds.map(genreId=> {
-    const sql = `
-      INSERT INTO 
-        book_genres(book_id, genre_id)
-      VALUES
-        ($1, $2)
-    `
-    return db.any(sql, [bookId.id, genreId.id])
-  })
-  return Promise.all(queries)
+  if (typeof genreIds === 'number') { [genreIds] }
+    const queries = genreIds.map(genreId=> {
+      if (genreId !== '' && genreId !== undefined) {
+        const sql = `
+          INSERT INTO 
+            book_genres(book_id, genre_id)
+          VALUES
+            ($1, $2)
+        `
+        return db.any(sql, [bookId.id, genreId.id])
+      }
+    })
+    return Promise.all(queries)
 }
 
 
 const associateBookWithAuthors = (bookId, authorIds) => {
-  const queries = authorIds.map(authorId => {
-    const sql = `
-      INSERT INTO 
-        book_authors(book_id, author_id)
-      VALUES
-        ($1, $2)
+  if (typeof authorIds === 'number') { [authorIds] }
+    const queries = authorIds.map(authorId => {
+      if (authorId !== '' && authorId !== undefined) {
+        const sql = `
+          INSERT INTO 
+            book_authors(book_id, author_id)
+          VALUES
+            ($1, $2)
+        `
+        return db.any(sql, [bookId.id, authorId.id])
+      }
+    })
+    return Promise.all(queries)
+}
+
+const searchForBooks = (options) => {
+  const variables = []
+  let sql = `
+    SELECT
+      DISTINCT(books.*)
+    FROM
+      books
+  `
+  if (options.search_query) {
+    let search_query = options.search_query
+      .toLowerCase()
+      .replace(/^ */, '%')
+      .replace(/ *$/, '%')
+      .replace(/ +/g, '%')
+
+    variables.push(search_query)
+    sql +=`
+      JOIN
+        book_authors
+      ON
+        books.id = book_authors.book_id
+      JOIN
+        authors
+      ON
+        authors.id = book_authors.author_id
+      JOIN
+        book_genres
+      ON
+        books.id = book_genres.book_id
+      JOIN
+        genres
+      ON
+        genres.id = book_genres.genre_id
+      WHERE
+        LOWER(books.title) LIKE $${variables.length}
+      OR
+        LOWER(authors.name) LIKE $${variables.length}
+      OR
+        LOWER(genres.name) LIKE $${variables.length}
     `
-    return db.any(sql, [bookId.id, authorId.id])
-  })
-  return Promise.all(queries)
+  }
+
+   if (options.page){
+    variables.push(PAGE_SIZE)
+    variables.push(pageToOffset(options.page))
+    sql += `
+      LIMIT $${variables.length-1}
+      OFFSET $${variables.length}
+    `
+  }
+  return db.any(sql, variables)
 }
 
 
@@ -322,5 +418,6 @@ export default {
   getAllAuthors,
   getBook,
   getBookWithAuthorsAndGenres,
-  updateBook
+  updateBook,
+  searchForBooks
 }

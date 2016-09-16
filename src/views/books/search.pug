@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  for book in books
+    h3=book.title
+    .row.jumbotron
+      .col-md-4
+        img.media-object.thumbnail(src= book.image_url, alt='...')
+      .col-md-8
+        p= book.description
+
+  if page > 1
+  a.btn.btn-info.pull-right(href="/search-books?page="+(page+1)) Next
+  a.btn.btn-info.pull-left(href="/search-books?page="+(page-1)) Prev

@@ -65,7 +65,7 @@ router.post('/books', (request, response) => {
   .catch(renderError(response))
 });
 
-// SHOW
+// Details 
 router.get('/books/:bookId', (request, response) => {
   const { bookId } = request.params
   console.log('we are in the details page', bookId)
@@ -87,35 +87,71 @@ router.get('/books/:bookId/delete', (request, response) => {
     .catch(renderError(response))
 });
 
+// Edit
 router.get('/books/:bookId/edit', (request, response) => {
   console.log(request.params)
   
   Promise.all([
     database.getBookWithAuthorsAndGenres(request.params.bookId),
     database.getAllGenres(),
-    database.getAllAuthors(),
+    database.getAllAuthors()
   ])
-    .then(details => {
-      const book = details[0]
-      const genres = details[1]
-      const authors = details[2]
+    .then(edit => {
+      const book = edit[0]
+      const genres = edit[1]
+      const authors = edit[2]
+      console.log("book", book)
       response.render('books/edit', {
         book: book,
         genres: genres,
-        authors: authors,
+        authors: authors
       }) 
     })
     .catch(renderError(response))
 });
 
+// Post Edit
 router.post('/books/:bookId', (request, response) => {
   const { bookId } = request.params
+  console.log("Post Edit", request.body.book)
+  console.log("Post Edit bookId", bookId)
   database.updateBook(bookId, request.body.book)
     .then(() => {
       response.redirect('/books/'+bookId)
     })
     .catch(renderError(response))
 });
+
+const getPage = function(request){
+  let page = parseInt(request.query.page, 10)
+  if (isNaN(page) || page < 1) page = 1;
+  return page;
+}
+
+//Search
+router.get('/search-books', (request, response) => {
+  let page = getPage(request)
+  console.log("request.query", request.query)
+  console.log("request", request)
+  console.log("request.query.search_query", request.query.search_query)
+
+  const searchOptions = {
+    search_query: request.query.search_query,
+    page: page
+  }
+  console.log("page", page)
+
+  database.searchForBooks(searchOptions)
+    .then(books => {
+      books[0].authors = []
+      books[0].genres = []
+
+      response.render('books/search', {
+        page: page,
+        books: books
+      })
+    })
+})
 
 
 const renderError = function(response){
