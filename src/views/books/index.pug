@@ -5,3 +5,6 @@ block content
     for book in books
       li
         a(href="/books/"+book.id)= book.title
+        
+  a.btn.btn-info.pull-right(href="/?page="+(page+1)) Next
+  a.btn.btn-info.pull-left(href="/?page="+(page-1)) Prev
