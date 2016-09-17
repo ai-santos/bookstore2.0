@@ -1,3 +1,7 @@
+body {
+  background-image: url('/images/footer_lodyas.png')
+}
+
 .author-name-display, .genre-name-display {
   display:  inline;
 }
@@ -12,9 +16,12 @@
   font-weight: bold;
 }
 
-.flexbox {
+.header-links {
   display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
 }
 
 .shrink {
@@ -39,7 +46,7 @@
   display: inline-flex;
 }
 
-input[type="text"] {
+#search{
   height: 60px;
   font-size: 55px;
   display: inline-block;
@@ -60,11 +67,11 @@ input[type="text"] {
   cursor: pointer;
 }
 
-input[type="text"]:focus:hover {
+#search:focus:hover {
   border-bottom: 1px solid #BBB;
 }
 
-input[type="text"]:focus {
+#search:focus {
   width: 700px;
   z-index: 1;
   border-bottom: 1px solid #BBB;
@@ -72,7 +79,7 @@ input[type="text"]:focus {
 }
 
 
-input[type="text"] {
+#search {
   height: 60px;
   font-size: 55px;
   display: inline-block;
@@ -93,7 +100,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-input[type="submit"] {
+#search_submit {
   height: 67px;
   width: 63px;
   display: inline-block;
@@ -112,6 +119,10 @@ input[type="submit"] {
   transition: opacity .4s ease;
 }
 
-input[type="submit"]:hover {
+#search_submit:hover {
   opacity: 0.8;
+}
+
+.content-styling {
+  margin-top: 100px;
 }
