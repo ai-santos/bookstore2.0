@@ -5,10 +5,13 @@ body {
 /*navbar styling*/
 #logo {
   padding-right: 100px;
+  font-family: 'Economica', sans-serif;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #000;
 }
 
 .navbar-styling {
-  font-family: Raleway;
   margin: 0 auto;
   padding: 1.5em 1em;
   text-align: center;
@@ -17,10 +20,10 @@ body {
 }
 
 .navbar-styling a {
-  color: #FFF;
+  font: 20px 'Open Sans', sans-serif;
+  color: #fff;
   float: left;
   text-decoration: none;
-  font: 20px Raleway;
   margin: 0px 10px;
   padding: 10px 10px;
   position: relative;
@@ -67,11 +70,6 @@ body {
   display:  none;
 }
 
-.nav-logo-font {
-  font-family: 'Economica', sans-serif;
-  font-size: 4rem;
-  font-weight: bold;
-}
 
 .header-links {
   display: flex;
