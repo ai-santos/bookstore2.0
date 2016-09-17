@@ -13,11 +13,11 @@ html(lang="en")
    
 
     header
-      nav.navbar.navbar-default
+      nav.navbar-styling.teal.borderYtoX
         .container
           .row
             .col-lg-12.header-list
-              a.navbar-brand.nav-logo-font(href="/" title="Home").logo Bookstore 2.0
+              a#logo.navbar-brand.nav-logo-font(href="/" title="Home").logo Bookstore 2.0
               form#wrap(action='/search-books', autocomplete='on', method="get")
                 .form-group
                   input#search.form-control(name='search_query', type='text', placeholder="What are we looking for?")
