@@ -10,6 +10,8 @@ html(lang="en")
     script(src="/scripts/app.js")
 
   body
+   
+
     header
       nav.navbar.navbar-default
         .container
@@ -25,8 +27,47 @@ html(lang="en")
                 a(href="/books/new" title="New Book") New Book
                 a(href="/logout" title="Logout") Logout
               else
-                a(href="/signup" title="Sign Up") Sign Up
-                a(href="/login" title="Login") Login
+                a(href="#" data-toggle="modal" data-target="#signupmodal" title="Sign Up") Sign Up
+                a(href="#" data-toggle="modal" data-target="#loginmodal" title="Login") Login
+
+
+  #signupmodal.modal.fade.bannerformmodal(tabindex="-1", role="dialog", aria-labelledby="signupmodal", aria-hidden="true")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+            h4#myModalLabel.modal-title Sign up 
+          .modal-body
+            form(method="post" action="/signup")
+              .form-group
+                label(for="email") Email address
+                input#email.form-control(type="email" name="user[email]" placeholder="Email")
+              .form-group
+                label(for="password") Password
+                input#password.form-control(type="password" name="user[password]" placeholder="Password")
+              .form-group
+                label(for="password-confirmation") Password Confirmation
+                input#password-confirmation.form-control(type="password" name="user[password_confirmation]" placeholder="Password Confirmation")
+              button.btn.btn-primary(type="submit") Sign up
+
+  #loginmodal.modal.fade.bannerformmodal(tabindex="-1", role="dialog", aria-labelledby="loginmodal", aria-hidden="true")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+          h4#myModalLabel.modal-title Login 
+        .modal-body
+          form(method="post" action="/login")
+            .form-group
+              label(for="email") Email address
+              input#email.form-control(type="email" name="user[email]" placeholder="Email")
+            .form-group
+              label(for="password") Password
+              input#password.form-control(type="password" name="user[password]" placeholder="Password")
+              button.btn.btn-primary(type="submit") Login
+
+ 
 
    
 .container
