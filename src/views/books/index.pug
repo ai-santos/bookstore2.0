@@ -3,7 +3,7 @@ extends ../layout
 block content
     ol.content-styling
       for book in books
-        .media
+        .media.well.well-lg
           .media-left.media-middle
             img.media-object.thumbnail(src=book.image_url, alt='...')
           .media-body
