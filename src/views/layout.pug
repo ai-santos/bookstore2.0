@@ -21,7 +21,7 @@ html(lang="en")
               a#logo(href="/" title="Home").logo Bookstore 2.0
               form#wrap(action='/search-books', autocomplete='on', method="get")
                 .form-group
-                  input#search.form-control(name='search_query', type='text', placeholder="What are we looking for?")
+                  input#search.form-control(name='search_query', type='text', placeholder="Search")
                   input#search_submit.form-control(type='submit' value='Submit')
 
               if loggedIn 

@@ -1,6 +1,50 @@
 extends ../layout
 
 block content
+  .container.content-styling
+    .row
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-12.shelf.hidden-md.hidden-lg
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-12.shelf
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-12.shelf.hidden-md.hidden-lg
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-4.col-md-2
+        a(href='')
+          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
+      .col-xs-12.shelf
+    a.btn.btn-info.pull-right(href="/?page="+(page+1)) Next
+    a.btn.btn-info.pull-left(href="/?page="+(page-1)) Prev
     ol.content-styling
       for book in books
         .media.well.well-lg
@@ -11,5 +55,3 @@ block content
               a(href="/books/"+book.id)= book.title
             p= book.description   
           
-    a.btn.btn-info.pull-right(href="/?page="+(page+1)) Next
-    a.btn.btn-info.pull-left(href="/?page="+(page-1)) Prev
