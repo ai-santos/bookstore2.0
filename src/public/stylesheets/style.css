@@ -7,6 +7,13 @@ body {
   overflow-y: scroll;
 }  */
 
+
+/*btn*/
+.btn-info, .btn-info:hover {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
 /*navbar styling*/
 #logo {
   padding-right: 100px;
@@ -63,8 +70,8 @@ body {
   width: 100%;
 }
 
-.teal {
-  background: rgba(0, 0, 0, .5);
+.black {
+  background: rgba(0, 0, 0, .4);
 }
 
 .author-name-display, .genre-name-display {
@@ -192,6 +199,11 @@ body {
   padding: 15px 0 0 0;
   margin: auto;
 }
+
+.bookshelf img {
+  vertical-align: middle;
+}
+
 a.bookshelf:before { /* Just to give a little puddle of a shadow without adding another element */
   content: '';
     display: block;
@@ -212,6 +224,7 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
   top: -15px;
   z-index: -10;
 }
+
 /*Example adding pseudo element to give shelf depth*/
 .shelf:after {
   content: '';
@@ -225,4 +238,49 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
   z-index: 1;
   margin: 0 -20px;
 }
+
+.csstransforms3d  .books {
+  -moz-perspective: 100px;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.csstransforms3d  .book {
+  position: relative;
+  -moz-perspective: 100px;
+  -moz-transform: rotateY(-3deg);
+  -webkit-transform: perspective(100) rotateY(-3deg);
+  outline: 1px solid transparent; /* Helps smooth jagged edges in Firefox */
+  box-shadow: none;
+  margin: 0;
+}
+
+.csstransforms3d  .book img {
+  position: relative;
+  max-width: 100%;
+}
+
+.csstransforms3d  .book:before,
+.csstransforms3d  .book:after {
+  position: absolute;
+  top: 2%;
+  height: 96%;
+  content: ' ';
+  z-index: -1;
+}
+
+.csstransforms3d  .book:before {
+  width: 100%;
+  left: 7.5%;
+  background-color: #5a2d18;
+  box-shadow: 5px 5px 20px #333;
+}
+
+.csstransforms3d  .book:after {
+  width: 5%;
+  left: 100%;
+  background-color: #EFEFEF;
+  box-shadow: inset 0px 0px 5px #aaa;
+  -moz-transform: rotateY(20deg);
+  -webkit-transform: perspective(100) rotateY(20deg);
 }

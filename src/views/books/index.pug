@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .container.content-styling
-    .row
+    .row.books
     for book in books
       .col-xs-4.col-md-2
         a.bookshelf(href="/books/"+book.id)
