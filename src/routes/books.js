@@ -43,10 +43,10 @@ router.get('/', (request, response) => {
 
 
 
-// NEW
-router.get('/books/new', (request, response) => {
-  response.render('books/new')
-});
+// // NEW
+// router.get('/books/new', (request, response) => {
+//   response.render('books/new')
+// });
 
 //CREATE BOOK WITH EXISTING AUTHOR, EXISTING GENRE
 

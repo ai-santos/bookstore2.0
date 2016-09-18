@@ -290,3 +290,10 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
   -moz-transform: rotateY(20deg);
   -webkit-transform: perspective(100) rotateY(20deg);
 }
+
+.title {
+  color: white;
+  font-family: 'Economica', sans-serif;
+  font-size: 4rem;
+}
+
