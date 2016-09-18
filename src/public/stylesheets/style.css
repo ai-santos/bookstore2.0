@@ -297,3 +297,7 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
   font-size: 4rem;
 }
 
+.space-right {
+  margin-right: 25px;
+}
+
