@@ -4,27 +4,29 @@ html(lang="en")
     title BookStore
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     link(href='https://fonts.googleapis.com/css?family=Economica', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
     link(rel="stylesheet" href="/stylesheets/style.css")
     script(src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
+    script(src="/scripts/modernizr-custom.js")
     script(src="/scripts/app.js")
 
-  body
+  body.noscroll
    
 
     header
-      nav.navbar-styling.teal.borderYtoX
+      nav.navbar-styling.black.borderYtoX
         .container
           .row
             .col-lg-12.header-list
-              a#logo.navbar-brand.nav-logo-font(href="/" title="Home").logo Bookstore 2.0
+              a#logo(href="/" title="Home").logo Bookstore 2.0
               form#wrap(action='/search-books', autocomplete='on', method="get")
                 .form-group
-                  input#search.form-control(name='search_query', type='text', placeholder="What are we looking for?")
+                  input#search.form-control(name='search_query', type='text', placeholder="Search")
                   input#search_submit.form-control(type='submit' value='Submit')
 
               if loggedIn 
-                a(href="/books/new" title="New Book") New Book
+                a(href="#" title="New Book" data-toggle='modal' data-target='.bs-example-modal-lg') New Book
                 a(href="/logout" title="Logout") Logout
               else
                 a(href="#" data-toggle="modal" data-target="#signupmodal" title="Sign Up") Sign Up
@@ -37,9 +39,12 @@ html(lang="en")
         .modal-content
           .modal-header
             button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-            h4#myModalLabel.modal-title Sign up 
+            h4#myModalLabel.modal-title Bookstore 2.0 Sign up 
           .modal-body
             form(method="post" action="/signup")
+              .form-group
+                label(for="name") Name 
+                input#name.form-control(type="text" name="user[name]" placeholder="Email")
               .form-group
                 label(for="email") Email address
                 input#email.form-control(type="email" name="user[email]" placeholder="Email")
@@ -56,7 +61,7 @@ html(lang="en")
       .modal-content
         .modal-header
           button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-          h4#myModalLabel.modal-title Login 
+          h4#myModalLabel.modal-title Bookstore 2.0 Login 
         .modal-body
           form(method="post" action="/login")
             .form-group
@@ -65,10 +70,7 @@ html(lang="en")
             .form-group
               label(for="password") Password
               input#password.form-control(type="password" name="user[password]" placeholder="Password")
-              button.btn.btn-primary(type="submit") Login
+            button.btn.btn-primary(type="submit") Login
 
- 
-
-   
 .container
   block content
