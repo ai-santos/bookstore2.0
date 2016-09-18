@@ -10,7 +10,7 @@ const getAllGenres = () => {
     FROM
       genres
   `
-  return db.all(sql)
+  return db.manyOrNone(sql)
 }
 
 const getAllAuthors = () => {
@@ -20,7 +20,7 @@ const getAllAuthors = () => {
     FROM
       authors
   `
-  return db.all(sql)
+  return db.manyOrNone(sql)
 }
 
 const getAllBooksByUserId = (userId) => {
