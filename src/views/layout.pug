@@ -39,7 +39,7 @@ html(lang="en")
         .modal-content
           .modal-header
             button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-            h4#myModalLabel.modal-title Sign up 
+            h4#myModalLabel.modal-title Bookstore 2.0 Sign up 
           .modal-body
             form(method="post" action="/signup")
               .form-group
@@ -61,7 +61,7 @@ html(lang="en")
       .modal-content
         .modal-header
           button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-          h4#myModalLabel.modal-title Login 
+          h4#myModalLabel.modal-title Bookstore 2.0 Login 
         .modal-body
           form(method="post" action="/login")
             .form-group
@@ -70,7 +70,7 @@ html(lang="en")
             .form-group
               label(for="password") Password
               input#password.form-control(type="password" name="user[password]" placeholder="Password")
-              button.btn.btn-primary(type="submit") Login
+            button.btn.btn-primary(type="submit") Login
 
 .container
   block content

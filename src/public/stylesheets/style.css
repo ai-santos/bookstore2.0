@@ -9,6 +9,12 @@ body {
 
 
 /*btn*/
+.btn-primary {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+
 .btn-info, .btn-info:hover {
   color: #fff;
   background-color: #000;
