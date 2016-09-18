@@ -2,48 +2,49 @@ extends ../layout
 
 block content
   .container.content-styling
-    .row.books
     for book in books
-      .col-xs-4.col-md-2
-        a.bookshelf(href="/books/"+book.id)
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-12.shelf.hidden-md.hidden-lg
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      //- .col-xs-12.shelf
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      //- .col-xs-4.col-md-2
-      //-   a(href='')
-      //-     img.img-responsive.book(src=book.image_url)
-      .col-xs-12.shelf.hidden-md.hidden-lg
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src=book.image_url)
-      .col-xs-12.shelf
+      .row.books
+        .col-xs-4.col-md-2
+          a.bookshelf(href="/books/"+book.id)
+            img.img-responsive.book(src=book.image_url)
+        .col-xs-12.shelf
+    //- for book in books
+    //-   .row.books      
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-12.shelf
+    //-     .col-xs-12.shelf.hidden-md.hidden-lg
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-12.shelf
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-12.shelf
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-12.shelf.hidden-md.hidden-lg
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+    //-     .col-xs-4.col-md-2
+    //-       a(href='')
+    //-         img.img-responsive.book(src=book.image_url)
+        //- .col-xs-4.col-md-2
+        //-   a(href='')
+        //-     img.img-responsive.book(src=book.image_url)
     a.btn.btn-info.pull-right(href="/?page="+(page+1)) Next
     a.btn.btn-info.pull-left(href="/?page="+(page-1)) Prev
  
