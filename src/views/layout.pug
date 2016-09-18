@@ -26,7 +26,7 @@ html(lang="en")
                   input#search_submit.form-control(type='submit' value='Submit')
 
               if loggedIn 
-                a(href="/books/new" title="New Book") New Book
+                a(href="#" title="New Book" data-toggle='modal' data-target='.bs-example-modal-lg') New Book
                 a(href="/logout" title="Logout") Logout
               else
                 a(href="#" data-toggle="modal" data-target="#signupmodal" title="Sign Up") Sign Up

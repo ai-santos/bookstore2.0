@@ -215,7 +215,7 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
     display: block;
     width: 80%;
     height: 1em;
-    background: rgba(255,255,255,.35);
+    background: rgba(104,104,104,.35);
     border-radius: 50%;
     position: absolute;
     bottom:-10px;
@@ -224,7 +224,7 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
     z-index:-5;
 }
 .shelf {
-  border-bottom: 30px solid #fff;
+  border-bottom: 30px solid #686868;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
   top: -15px;
