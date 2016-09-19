@@ -5,7 +5,7 @@ import database from '../database'
 const router = express.Router()
 
 const getPage = function(request){
-  let page = parseInt(request.query.page, 10)
+  let page = parseInt(request.query.page, 8)
   if (isNaN(page) || page < 1) page = 1;
   return page;
 }
@@ -43,10 +43,10 @@ router.get('/', (request, response) => {
 
 
 
-// NEW
-router.get('/books/new', (request, response) => {
-  response.render('books/new')
-});
+// // NEW
+// router.get('/books/new', (request, response) => {
+//   response.render('books/new')
+// });
 
 //CREATE BOOK WITH EXISTING AUTHOR, EXISTING GENRE
 

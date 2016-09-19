@@ -1,57 +1,22 @@
 extends ../layout
 
 block content
-  .container.content-styling
-  h1 Your Search Results
-    .row
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-12.shelf.hidden-md.hidden-lg
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-12.shelf
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-12.shelf.hidden-md.hidden-lg
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-4.col-md-2
-        a(href='')
-          img.img-responsive.book(src='http://placehold.it/150x190/e8117f/fff&text=Book%20Title')
-      .col-xs-12.shelf
+  h1.title.header-styling Search Results
+    .container.bookshelf-margin
+      .row.books
+        .col-md-12
+          for book in books
+            a.bookshelf(href="/books/"+book.id)
+              img.img-responsive.book(src=book.image_url)
+        .col-xs-12.shelf
   if page > 1
   a.btn.btn-info.pull-right(href="/search-books?page="+(page+1)) Next
   a.btn.btn-info.pull-left(href="/search-books?page="+(page-1)) Prev
   
-  for book in books
-    h3=book.title
-    .row.jumbotron
-      .col-md-4
-        img.media-object.thumbnail(src= book.image_url, alt='...')
-      .col-md-8
-        p= book.description
+  //- for book in books
+  //-   h3=book.title
+  //-   .row.jumbotron
+  //-     .col-md-4
+  //-       img.media-object.thumbnail(src= book.image_url, alt='...')
+  //-     .col-md-8
+  //-       p= book.description

@@ -10,7 +10,7 @@ const getAllGenres = () => {
     FROM
       genres
   `
-  return db.all(sql)
+  return db.manyOrNone(sql)
 }
 
 const getAllAuthors = () => {
@@ -20,7 +20,7 @@ const getAllAuthors = () => {
     FROM
       authors
   `
-  return db.all(sql)
+  return db.manyOrNone(sql)
 }
 
 const getAllBooksByUserId = (userId) => {
@@ -342,7 +342,7 @@ const associateBookWithAuthors = (bookId, authorIds) => {
     return Promise.all(queries)
 }
 
-const PAGE_SIZE=10
+const PAGE_SIZE=8
 
 const pageToOffset = (page) => {
   page = page || 1

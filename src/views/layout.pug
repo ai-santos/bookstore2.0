@@ -26,17 +26,41 @@ html(lang="en")
                   input#search_submit.form-control(type='submit' value='Submit')
 
               if loggedIn 
-                a(href="#" title="New Book" data-toggle='modal' data-target='.bs-example-modal-lg') New Book
+                a(href="#addbookmodal" data-toggle="modal" data-target="#addbookmodal" title="Add A Book") Add A Book
                 a(href="/logout" title="Logout") Logout
               else
                 a(href="#" data-toggle="modal" data-target="#signupmodal" title="Sign Up") Sign Up
                 a(href="#" data-toggle="modal" data-target="#loginmodal" title="Login") Login
 
+  #addbookmodal.modal.fade.bs-example-modal-lg(tabindex='-1' aria-labelledby='addbookmodal')
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+          h4#addbookmodal.modal-title Bookstore 2.0 Add A Book 
+        .modal-body
+          form(method="post" action=('/books'))
+            .form-group
+              input#title.form-control(type='text' name='book[title]' placeholder='Enter your book\'s title')
+            .form-group
+              input#image_url.form-control(type='text' name='book[image_url]' placeholder='Enter your book\'s image url')
+            .form-group
+              textarea#description.form-control(name='book[description]' placeholder='Add Your Description')
+            .form-group
+              textarea#author.form-control(name='book[author1]' placeholder='Add Your First Author')
+            .form-group
+              textarea#author.form-control(name='book[author2]' placeholder='Add Your Second Author')
+            .form-group
+              textarea#genre.form-control(name='book[genre1]' placeholder='Add Your First Genre')
+            .form-group
+              textarea#genre.form-control(name='book[genre2]' placeholder='Add Your Second Genre')
+            div
+              input.btn.btn-primary(type="submit", value="Add Your Book")
+
 
   #signupmodal.modal.fade.bannerformmodal(tabindex="-1", role="dialog", aria-labelledby="signupmodal", aria-hidden="true")
     .modal-dialog.modal-sm
       .modal-content
-        .modal-content
           .modal-header
             button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
             h4#myModalLabel.modal-title Bookstore 2.0 Sign up 

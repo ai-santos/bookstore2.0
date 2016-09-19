@@ -2,37 +2,6 @@ extends ../layout
 
 block content
 
-  .container
-    .row
-      .col-md-9
-        .modal.fade.bs-example-modal-lg(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel')
-          .modal-dialog.modal-lg(role='document')
-            .modal-content
-              form(method="post" action=('/books'))
-                .form-group
-                  label(for='title') Title
-                  input#title.form-control(type='text', name='book[title]')
-                .form-group
-                  label(for='image_url') Image URL
-                  input#image_url.form-control(type='text', name='book[image_url]')
-                .form-group
-                  label(for='description') Description
-                  textarea#description.form-control(name='book[description]')
-                .form-group
-                  label(for='author') author 1
-                  textarea#author.form-control(name='book[author1]')
-                .form-group
-                  label(for='author') author 2
-                  textarea#author.form-control(name='book[author2]')  
-                .form-group
-                  label(for='genre') genre 1
-                  textarea#genre.form-control(name='book[genre1]')
-                .form-group
-                  label(for='genre') genre 2
-                  textarea#genre.form-control(name='book[genre2]')
-                div
-                  input.btn.btn-success(type="submit", value="Create")
-
   //- .form-group
   //-   label(for='authors') Authors
   //-   select#authors.form-control(multiple name="book[author_ids]")

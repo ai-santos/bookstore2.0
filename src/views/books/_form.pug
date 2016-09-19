@@ -1,24 +1,25 @@
-form(method="post" action=(book.id ? "/books/"+book.id : '/books'))
-  .form-group
-    label(for='title') Title
-    input#title.form-control(type='text', name='book[title]' value=book.title)
-  .form-group
-    label(for='image_url') Image URL
-    input#image_url.form-control(type='text', name='book[image_url]' value=book.image_url)
-  .form-group
-    label(for='description') Description
-    textarea#description.form-control(name='book[description]')= book.description
-  .form-group
-    label(for='authors') Authors
-    select#authors.form-control(multiple name="book[author_ids]")
-      for author in authors
-        - selected = book.authors.map(author => author.id).includes(author.id)
-        option(value=author.id selected=selected)= author.name
-  .form-group
-    label(for='genres') Genres
-    select#genres.form-control(multiple name="book[genre_ids]")
-      for genre in genres
-        - selected = book.genres.map(genre => genre.id).includes(genre.id)
-        option(value=genre.id selected=selected)= genre.name
-  a.btn.btn-default(href="/books/"+book.id) cancel
-  button.btn.btn-primary(type='submit')= book.id ? 'Update' : 'Create'
+.container.header-styling.well
+  form(method="post" action=(book.id ? "/books/"+book.id : '/books'))
+    .form-group
+      label(for='title') Title
+      input#title.form-control(type='text', name='book[title]' value=book.title)
+    .form-group
+      label(for='image_url') Image URL
+      input#image_url.form-control(type='text', name='book[image_url]' value=book.image_url)
+    .form-group
+      label(for='description') Description
+      textarea#description.form-control(name='book[description]')= book.description
+    .form-group
+      label(for='authors') Authors
+      select#authors.form-control(multiple name="book[author_ids]")
+        for author in authors
+          - selected = book.authors.map(author => author.id).includes(author.id)
+          option(value=author.id selected=selected)= author.name
+    .form-group
+      label(for='genres') Genres
+      select#genres.form-control(multiple name="book[genre_ids]")
+        for genre in genres
+          - selected = book.genres.map(genre => genre.id).includes(genre.id)
+          option(value=genre.id selected=selected)= genre.name
+    a.btn.btn-danger.space-right(href="/books/"+book.id) cancel
+    button.btn.btn-success(type='submit')= book.id ? 'Update' : 'Create'
