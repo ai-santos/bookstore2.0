@@ -5,7 +5,7 @@ import database from '../database'
 const router = express.Router()
 
 const getPage = function(request){
-  let page = parseInt(request.query.page, 8)
+  let page = parseInt(request.query.page, 10)
   if (isNaN(page) || page < 1) page = 1;
   return page;
 }
