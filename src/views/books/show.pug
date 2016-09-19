@@ -1,13 +1,14 @@
 extends ../layout
 
 block content
-  .container.content-styling
+  h1.title.header-styling Book Details
+  .container
     .media
       .media-left.media-top
         a(href='#')
           img.media-object.thumbnail(src=book.image_url, alt='...')
       .media-body.well
-        h4.media-heading Middle aligned media
+        h4.media-heading= book.title 
         p= book.description
         h4 Authors
         ol

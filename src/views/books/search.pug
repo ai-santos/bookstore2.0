@@ -1,50 +1,14 @@
 extends ../layout
 
 block content
-  .container.content-styling
-  h1.title Search Results
-  for book in books
-    .col-xs-4.col-md-2
-      a.bookshelf(href="/books/"+book.id)
-        img.img-responsive.book(src=book.image_url)
-    .col-xs-4.col-md-2
-      a(href='')
-        img.img-responsive.book(src=book.image_url)
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-12.shelf.hidden-md.hidden-lg
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-12.shelf
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    //- .col-xs-4.col-md-2
-    //-   a(href='')
-    //-     img.img-responsive.book(src=book.image_url)
-    .col-xs-12.shelf.hidden-md.hidden-lg
-    .col-xs-4.col-md-2
-      a(href='')
-        img.img-responsive.book(src=book.image_url)
-  for book in books
-    .col-xs-4.col-md-2
-      a(href='')
-        img.img-responsive.book(src=book.image_url)
-    .col-xs-4.col-md-2
-      a(href='')
-        img.img-responsive.book(src=book.image_url)
-    .col-xs-12.shelf
+  h1.title.header-styling Search Results
+    .container.bookshelf-margin
+      .row.books
+        .col-md-12
+          for book in books
+            a.bookshelf(href="/books/"+book.id)
+              img.img-responsive.book(src=book.image_url)
+        .col-xs-12.shelf
   if page > 1
   a.btn.btn-info.pull-right(href="/search-books?page="+(page+1)) Next
   a.btn.btn-info.pull-left(href="/search-books?page="+(page-1)) Prev
