@@ -1,14 +1,15 @@
 extends ../layout
 
 block content
-  .container.content-styling
+  h1.title.header-styling Bookstore 2.0 Library
+  .container.bookshelf-margin
     .row.books
       .col-md-12
         for book in books
           a.bookshelf(href="/books/"+book.id)
             img.img-responsive.book(src=book.image_url)
       .col-xs-12.shelf
-    a.btn.btn-info.pull-right(href="/?page="+(page+1)) Next
-    a.btn.btn-info.pull-left(href="/?page="+(page-1)) Prev
+      a.btn.btn-info.pull-right.page-btn-styles(href="/?page="+(page+1)) Next
+      a.btn.btn-info.pull-left.page-btn-styles(href="/?page="+(page-1)) Prev
  
           

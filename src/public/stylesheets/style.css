@@ -2,10 +2,10 @@ body {
   background-image: url('/images/stardust_@2X.png')
 }
 
-/* .noscroll { 
+.noscroll { 
   position: fixed;
   overflow-y: scroll;
-}  */
+} 
 
 
 /*btn*/
@@ -191,19 +191,25 @@ body {
   opacity: 0.8;
 }
 
-.content-styling {
+.header-styling {
   margin-top: 150px;
 }
 
-.book {
+.bookshelf-margin {
+  margin-top: 40px;
+}
+
+/* .book {
   padding: 15px 0 0 0;
   display: inline-block;
   box-shadow: 5px 5px 20px #333;
   margin: 10px;
-}
+} */
 .book {
-  padding: 15px 0 0 0;
-  margin: auto;
+  margin-right: 10px;
+  display: inline-flex;
+  flex-direction: row;
+
 }
 
 .bookshelf img {
@@ -245,56 +251,15 @@ a.bookshelf:before { /* Just to give a little puddle of a shadow without adding 
   margin: 0 -20px;
 }
 
-.csstransforms3d  .books {
-  -moz-perspective: 100px;
-  -moz-transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-}
-
-.csstransforms3d  .book {
-  position: relative;
-  -moz-perspective: 100px;
-  -moz-transform: rotateY(-3deg);
-  -webkit-transform: perspective(100) rotateY(-3deg);
-  outline: 1px solid transparent; /* Helps smooth jagged edges in Firefox */
-  box-shadow: none;
-  margin: 0;
-}
-
-.csstransforms3d  .book img {
-  position: relative;
-  max-width: 100%;
-}
-
-.csstransforms3d  .book:before,
-.csstransforms3d  .book:after {
-  position: absolute;
-  top: 2%;
-  height: 96%;
-  content: ' ';
-  z-index: -1;
-}
-
-.csstransforms3d  .book:before {
-  width: 100%;
-  left: 7.5%;
-  background-color: #5a2d18;
-  box-shadow: 5px 5px 20px #333;
-}
-
-.csstransforms3d  .book:after {
-  width: 5%;
-  left: 100%;
-  background-color: #EFEFEF;
-  box-shadow: inset 0px 0px 5px #aaa;
-  -moz-transform: rotateY(20deg);
-  -webkit-transform: perspective(100) rotateY(20deg);
+.page-btn-styles {
+  margin-top: 10px;
 }
 
 .title {
   color: white;
   font-family: 'Economica', sans-serif;
   font-size: 4rem;
+  text-align: center;
 }
 
 .space-right {
