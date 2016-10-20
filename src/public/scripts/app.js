@@ -6,7 +6,5 @@ $(function(){
     } else {
       $('header').removeClass('shrink');
     }
-  }
-
-  })();
+  })
 })
