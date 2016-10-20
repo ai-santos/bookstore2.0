@@ -2,9 +2,14 @@
   "name": "bookstore2.0",
   "version": "1.0.0",
   "description": "bookstore app 2nd iteration",
+  "main": "server.js",
+  "engines": {
+    "node": "6.5.0",
+    "npm": "3.10.3",
   "scripts": {
     "build": "babel --copy-files src --out-dir dist",
     "build:watch": "npm run build -- --watch",
+    "heroku-postbuild": "npm run build",
     "start":"node dist/server.js",
     "start:dev": "nodemon dist/server.js"
   },
