@@ -2,7 +2,6 @@
   "name": "bookstore2.0",
   "version": "1.0.0",
   "description": "bookstore app 2nd iteration",
-  "main": "server.js",
   "scripts": {
     "build": "babel --copy-files src --out-dir dist",
     "build:watch": "npm run build -- --watch",
